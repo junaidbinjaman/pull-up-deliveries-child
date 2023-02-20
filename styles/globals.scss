@@ -1,0 +1,19 @@
+// Importing google font
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+// Declaring google variables
+$primary-background: #212630;
+$box-background: #29303D;
+$text-color: #fff;
+$primary-btn-color: #D04795;
+
+// Declaring global font family
+$primary-font-family: 'DM Mono', monospace;
+
+body {
+  background: $primary-background;
+  font-family: $primary-font-family;
+  color: white;
+  font-weight: 100;
+  font-style: italic;
+}
