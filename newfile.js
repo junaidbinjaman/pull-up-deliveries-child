@@ -8,3 +8,5 @@ class DB {
     console.log('hello, I am here');
   }
 }
+
+const newBranch = 'Hello'
