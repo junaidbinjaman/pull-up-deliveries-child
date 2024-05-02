@@ -6,3 +6,8 @@
  * Description:    This is astra child theme developed for Pull Up Deliveries
  * Version:        1.0.0
  */
+
+ .header-action-nav ul > li:nth-child(2),
+ .header-action-nav ul > li:nth-child(3) {
+     cursor: pointer;
+ }
