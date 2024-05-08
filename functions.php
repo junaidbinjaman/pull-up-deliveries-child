@@ -27,3 +27,23 @@ function pull_up_deliveries_style() {
 }
 
 add_action( 'wp_enqueue_scripts', 'pull_up_deliveries_style' );
+
+/**
+ * The function initializes all the shortcodes
+ *
+ * @return void
+ */
+function init_shortcodes() {
+	add_shortcode( 'get_cart_product_count', 'get_cart_product_count__callback' );
+}
+
+/**
+ * Returns number of products added to cart.
+ *
+ * @return int
+ */
+function get_cart_product_count__callback() {
+	return WC()->cart->get_cart_contents_count();
+}
+
+add_action( 'init', 'init_shortcodes' );
