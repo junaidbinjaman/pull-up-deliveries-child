@@ -47,3 +47,40 @@ function get_cart_product_count__callback() {
 }
 
 add_action( 'init', 'init_shortcodes' );
+
+/**
+ * The function skips the customer dashboard
+ * and redirects them to order listing page.
+ *
+ * @param object $wp Current WordPress environment instance (passed by reference).
+ * @return void
+ */
+function skip_customer_dashboard( $wp ) {
+	if ( is_admin() ) {
+		return;
+	}
+
+	if ( 'my-account' === $wp->request ) {
+		wp_safe_redirect( site_url( 'my-account/orders' ) );
+		exit;
+	}
+}
+
+add_action( 'parse_request', 'skip_customer_dashboard' );
+
+/**
+ * Removes the dashboard and download menu.
+ *
+ * @return array
+ */
+function manage_wc_account_menu_items() {
+	$menu_items = array(
+		'orders'          => __( 'Orders', 'pull-up-deliveries' ),
+		'edit-address'    => 'Address',
+		'edit-account'    => 'Account Details',
+		'customer-logout' => 'Log out',
+	);
+	return $menu_items;
+}
+
+add_action( 'woocommerce_account_menu_items', 'manage_wc_account_menu_items' );
