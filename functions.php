@@ -35,6 +35,7 @@ add_action( 'wp_enqueue_scripts', 'pull_up_deliveries_style' );
  */
 function init_shortcodes() {
 	add_shortcode( 'get_cart_product_count', 'get_cart_product_count__callback' );
+	add_shortcode( 'show_login_my_account_text', 'show_login_my_account_text' );
 }
 
 /**
@@ -44,6 +45,24 @@ function init_shortcodes() {
  */
 function get_cart_product_count__callback() {
 	return WC()->cart->get_cart_contents_count();
+}
+
+/**
+ * The function displays login/my account based on user status
+ *
+ * @return void
+ */
+function show_login_my_account_text() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	if ( is_user_logged_in() ) {
+		echo 'My Account';
+		return;
+	}
+
+	echo 'LogIn';
 }
 
 add_action( 'init', 'init_shortcodes' );
